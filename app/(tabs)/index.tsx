@@ -19,6 +19,10 @@ interface ShiftData {
   ShiftName: string;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 interface MaterialData {
   MaterialCode: string;
   MaterialName: string;
@@ -42,6 +46,28 @@ interface InspectionData {
   TrnDate: string;
 }
 
+<<<<<<< HEAD
+=======
+interface ProcessMetricsProps {
+  metrics: {
+    xBar: number;
+    stdDevOverall: number;
+    stdDevWithin: number;
+    movingRange: number;
+    cp: number;
+    cpkUpper: number;
+    cpkLower: number;
+    cpk: number;
+    pp: number;
+    ppu: number;
+    ppl: number;
+    ppk: number;
+    lsl: number;
+    usl: number;
+  };
+}
+
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 export default function AnalysisScreen() {
   const [selectedShifts, setSelectedShifts] = useState<number[]>([]);
   const [material, setMaterial] = useState('');
@@ -49,7 +75,10 @@ export default function AnalysisScreen() {
   const [gauge, setGauge] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+<<<<<<< HEAD
   const [sampleSize, setSampleSize] = useState(1);
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [downloading, setDownloading] = useState(false);
@@ -135,6 +164,7 @@ export default function AnalysisScreen() {
     }
   };
 
+<<<<<<< HEAD
   const calculateSubgroups = (data: number[], size: number) => {
     const subgroups = [];
     for (let i = 0; i < data.length; i += size) {
@@ -149,6 +179,8 @@ export default function AnalysisScreen() {
     return subgroups;
   };
 
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
   const calculateDistributionData = (specifications: number[]) => {
     const numberOfBins = Math.ceil(Math.sqrt(specifications.length));
     
@@ -198,6 +230,7 @@ export default function AnalysisScreen() {
       );
 
       const specifications = filteredData.map(d => parseFloat(d.ActualSpecification));
+<<<<<<< HEAD
       const subgroups = calculateSubgroups(specifications, sampleSize);
       
       const xBarData = subgroups.map((sg, i) => ({ x: i + 1, y: sg.mean }));
@@ -226,6 +259,27 @@ export default function AnalysisScreen() {
       const lsl = parseFloat(filteredData[0].FromSpecification);
       
       const stdDev = rangeMean / (sampleSize === 1 ? 1.128 : Math.sqrt(sampleSize));
+=======
+      const mean = specifications.reduce((a, b) => a + b, 0) / specifications.length;
+      const stdDev = Math.sqrt(
+        specifications.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / (specifications.length - 1)
+      );
+
+      const xBarData = specifications.map((spec, i) => ({ x: i + 1, y: spec }));
+      const rangeData = specifications.slice(1).map((spec, i) => ({
+        x: i + 1,
+        y: Math.abs(spec - specifications[i])
+      }));
+
+      const rangeMean = rangeData.reduce((a, b) => a + b.y, 0) / rangeData.length;
+      const xBarUcl = mean + (2.66 * rangeMean);
+      const xBarLcl = mean - (2.66 * rangeMean);
+      const rangeUcl = 3.267 * rangeMean;
+      const rangeLcl = 0;
+
+      const usl = parseFloat(filteredData[0].ToSpecification);
+      const lsl = parseFloat(filteredData[0].FromSpecification);
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
       const cp = (usl - lsl) / (6 * stdDev);
       const cpu = (usl - mean) / (3 * stdDev);
       const cpl = (mean - lsl) / (3 * stdDev);
@@ -235,6 +289,7 @@ export default function AnalysisScreen() {
 
       const analysis = {
         metrics: {
+<<<<<<< HEAD
           xBar: Number(mean.toFixed(4)),
           stdDevOverall: Number(stdDev.toFixed(4)),
           stdDevWithin: Number(stdDev.toFixed(4)),
@@ -249,25 +304,56 @@ export default function AnalysisScreen() {
           ppk: Number(cpk.toFixed(4)),
           lsl: Number(lsl.toFixed(4)),
           usl: Number(usl.toFixed(4))
+=======
+          xBar: Number(mean.toFixed(2)),
+          stdDevOverall: Number(stdDev.toFixed(2)),
+          stdDevWithin: Number(stdDev.toFixed(2)),
+          movingRange: Number(rangeMean.toFixed(2)),
+          cp: Number(cp.toFixed(2)),
+          cpkUpper: Number(cpu.toFixed(2)),
+          cpkLower: Number(cpl.toFixed(2)),
+          cpk: Number(cpk.toFixed(2)),
+          pp: Number(cp.toFixed(2)),
+          ppu: Number(cpu.toFixed(2)),
+          ppl: Number(cpl.toFixed(2)),
+          ppk: Number(cpk.toFixed(2)),
+          lsl: Number(lsl.toFixed(2)),
+          usl: Number(usl.toFixed(2))
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
         },
         controlCharts: {
           xBarData,
           rangeData,
           limits: {
+<<<<<<< HEAD
             xBarUcl: Number(xBarUcl.toFixed(4)),
             xBarLcl: Number(xBarLcl.toFixed(4)),
             xBarMean: Number(mean.toFixed(4)),
             rangeUcl: Number(rangeUcl.toFixed(4)),
             rangeLcl: Number(rangeLcl.toFixed(4)),
             rangeMean: Number(rangeMean.toFixed(4))
+=======
+            xBarUcl: Number(xBarUcl.toFixed(2)),
+            xBarLcl: Number(xBarLcl.toFixed(2)),
+            xBarMean: Number(mean.toFixed(2)),
+            rangeUcl: Number(rangeUcl.toFixed(2)),
+            rangeLcl: Number(rangeLcl.toFixed(2)),
+            rangeMean: Number(rangeMean.toFixed(2))
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
           }
         },
         distribution: {
           data: distributionData.data,
           stats: {
+<<<<<<< HEAD
             mean: Number(mean.toFixed(4)),
             stdDev: Number(stdDev.toFixed(4)),
             target: Number(((usl + lsl) / 2).toFixed(4))
+=======
+            mean: Number(mean.toFixed(2)),
+            stdDev: Number(stdDev.toFixed(2)),
+            target: Number(((usl + lsl) / 2).toFixed(2))
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
           },
           numberOfBins: distributionData.numberOfBins
         }
@@ -288,9 +374,15 @@ export default function AnalysisScreen() {
 
   const generateHTML = () => {
     if (!analysisData) return '';
+<<<<<<< HEAD
   
     const { metrics, controlCharts, distribution } = analysisData;
   
+=======
+
+    const { metrics } = analysisData;
+
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
     return `
       <!DOCTYPE html>
       <html>
@@ -298,6 +390,7 @@ export default function AnalysisScreen() {
           <meta charset="utf-8">
           <title>SPC Analysis Report</title>
           <style>
+<<<<<<< HEAD
             body { 
               font-family: Arial, sans-serif; 
               padding: 20px;
@@ -387,6 +480,15 @@ export default function AnalysisScreen() {
             .ucl { background: #fee2e2; }
             .mean { background: #e0e7ff; }
             .lcl { background: #fee2e2; }
+=======
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .section { margin-bottom: 20px; }
+            .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+            .metric-item { padding: 10px; background: #f5f5f5; border-radius: 5px; }
+            .metric-label { font-weight: bold; color: #333; }
+            .metric-value { color: #666; }
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
           </style>
         </head>
         <body>
@@ -394,6 +496,7 @@ export default function AnalysisScreen() {
             <h1>Statistical Process Control Analysis Report</h1>
             <p>Generated on ${format(new Date(), 'PPP')}</p>
           </div>
+<<<<<<< HEAD
   
           <div class="section">
             <h2>Analysis Parameters</h2>
@@ -421,6 +524,17 @@ export default function AnalysisScreen() {
             </div>
           </div>
   
+=======
+
+          <div class="section">
+            <h2>Analysis Parameters</h2>
+            <p>Date Range: ${format(startDate, 'PPP')} - ${format(endDate, 'PPP')}</p>
+            <p>Material: ${materials.find(m => m.MaterialCode === material)?.MaterialName || material}</p>
+            <p>Operation: ${operations.find(o => o.OperationCode === operation)?.OperationName || operation}</p>
+            <p>Gauge: ${gauges.find(g => g.GuageCode === gauge)?.GuageName || gauge}</p>
+          </div>
+
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
           <div class="section">
             <h2>Process Metrics</h2>
             <div class="metrics-grid">
@@ -450,6 +564,7 @@ export default function AnalysisScreen() {
               </div>
             </div>
           </div>
+<<<<<<< HEAD
   
           <div class="section">
             <h2>Control Charts</h2>
@@ -493,12 +608,24 @@ export default function AnalysisScreen() {
               <p><strong>Long-term Performance (Pp):</strong> ${metrics.pp >= 1.33 ? 'Process is performing well' : 'Long-term performance needs improvement'}</p>
               <p><strong>Long-term Centered (Ppk):</strong> ${metrics.ppk >= 1.33 ? 'Process is stable' : 'Long-term stability needs improvement'}</p>
             </div>
+=======
+
+          <div class="section">
+            <h2>Process Interpretation</h2>
+            <p>Short-term Capability (Cp): ${metrics.cp >= 1.33 ? 'Process is capable' : 'Process needs improvement'}</p>
+            <p>Short-term Centered (Cpk): ${metrics.cpk >= 1.33 ? 'Process is centered' : 'Process centering needs improvement'}</p>
+            <p>Long-term Performance (Pp): ${metrics.pp >= 1.33 ? 'Process is performing well' : 'Long-term performance needs improvement'}</p>
+            <p>Long-term Centered (Ppk): ${metrics.ppk >= 1.33 ? 'Process is stable' : 'Long-term stability needs improvement'}</p>
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
           </div>
         </body>
       </html>
     `;
   };
+<<<<<<< HEAD
   
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 
   const handleDownload = async () => {
     if (!analysisData) {
@@ -569,6 +696,7 @@ export default function AnalysisScreen() {
 
           <View style={styles.inputGroup}>
             <Text style={styles.sectionTitle}>Process Details</Text>
+<<<<<<< HEAD
             
             <View style={styles.pickerContainer}>
               <Text style={styles.label}>Sample Size</Text>
@@ -583,6 +711,8 @@ export default function AnalysisScreen() {
               </Picker>
             </View>
 
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
             <MultiSelect
               label="Shifts"
               options={shifts.map(s => ({ value: s.ShiftId, label: s.ShiftName }))}
@@ -693,6 +823,7 @@ export default function AnalysisScreen() {
         {analysisData && (
           <>
             <ProcessMetrics metrics={analysisData.metrics} />
+<<<<<<< HEAD
             <ControlCharts 
               {...analysisData.controlCharts} 
               sampleSize={sampleSize}
@@ -702,6 +833,14 @@ export default function AnalysisScreen() {
               lsl={analysisData.metrics.lsl}
               usl={analysisData.metrics.usl}
               target={analysisData.distribution.stats.target}
+=======
+            <ControlCharts {...analysisData.controlCharts} />
+            <HistogramChart 
+              data={analysisData.distribution.data}
+              lsl={parseFloat(analysisData.metrics.lsl)}
+              usl={parseFloat(analysisData.metrics.usl)}
+              target={parseFloat(analysisData.distribution.stats.target)}
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
               numberOfBins={analysisData.distribution.numberOfBins}
             />
             <DistributionChart

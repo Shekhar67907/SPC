@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
@@ -5,6 +6,19 @@
     "paths": {
       "@/*": ["./*"]
     }
+=======
+{ 
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "types": [
+      "nativewind/types"
+    ]
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
   },
   "include": [
     "**/*.ts",
@@ -13,4 +27,8 @@
     "expo-env.d.ts",
     "nativewind-env.d.ts"
   ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { View, Text, StyleSheet, Pressable, Platform, TextInput } from 'react-native';
+=======
+import { View, Text, StyleSheet, Pressable, Platform } from 'react-native';
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { Calendar } from 'lucide-react-native';
 import { format } from 'date-fns';
@@ -20,6 +24,7 @@ export function DatePickerInput({ label, value, onChange }: DatePickerInputProps
     }
   };
 
+<<<<<<< HEAD
   // For web, we'll use a specific handler
   const handleWebDateChange = (e: any) => {
     const selectedDate = new Date(e.target.value);
@@ -57,6 +62,8 @@ export function DatePickerInput({ label, value, onChange }: DatePickerInputProps
   }
 
   // Native implementation for iOS/Android
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
@@ -117,7 +124,11 @@ const styles = StyleSheet.create({
   picker: {
     backgroundColor: '#fff',
   },
+<<<<<<< HEAD
 });
 
 
 
+=======
+});
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0

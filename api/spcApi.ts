@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Updated API Layer with Fixes for APK Issues
 import axios from 'axios';
 import { format } from 'date-fns';
@@ -13,6 +14,19 @@ const headers = Platform.OS === 'web'
       'User-Agent': 'Mozilla/5.0 (Linux: Android 10)',
       'Content-Type': 'application/json',
     };
+=======
+import axios from 'axios';
+import { format } from 'date-fns';
+
+const BASE_URL = 'http://10.10.1.7:8304/api';
+
+const headers = {
+  'User-Agent': 'Mozilla/5.0 (Linux: Android 10)',
+  'Content-Type': 'application/json',  
+  'Access-Control-Allow-Origin': '*'
+  
+};
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 
 // 1. Get Shift List
 export interface ShiftData {
@@ -27,6 +41,7 @@ export interface ShiftResponse {
 }
 
 export const fetchShiftData = async (): Promise<ShiftResponse> => {
+<<<<<<< HEAD
   try {
     const response = await axios.get(
       `${BASE_URL}/commonappservices/getshiftdatalist`,
@@ -39,6 +54,10 @@ export const fetchShiftData = async (): Promise<ShiftResponse> => {
     }
     throw error;
   }
+=======
+  const response = await axios.get(`${BASE_URL}/commonappservices/getshiftdatalist`);
+  return response.data;
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 };
 
 // 2. Get Material List
@@ -52,6 +71,7 @@ export const fetchMaterialList = async (fromDate: Date, toDate: Date, shiftIds: 
     FromDate: format(fromDate, 'dd/MM/yyyy'),
     ToDate: format(toDate, 'dd/MM/yyyy'),
   };
+<<<<<<< HEAD
 
   try {
     if (__DEV__ && Platform.OS === 'web') {
@@ -90,6 +110,18 @@ export const fetchMaterialList = async (fromDate: Date, toDate: Date, shiftIds: 
     }
     throw error;
   }
+=======
+  
+  const response = await axios.post(
+    `${BASE_URL}/productionappservices/getmateriallist`, 
+    shiftIds,
+    { 
+      params,
+      headers 
+    }
+  );
+  return response.data;
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 };
 
 // 3. Get Operation List
@@ -99,9 +131,15 @@ export interface OperationData {
 }
 
 export const fetchOperationList = async (
+<<<<<<< HEAD
   fromDate: Date,
   toDate: Date,
   materialCode: string,
+=======
+  fromDate: Date, 
+  toDate: Date, 
+  materialCode: string, 
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
   shiftIds: number[]
 ): Promise<OperationData[]> => {
   const params = {
@@ -109,6 +147,7 @@ export const fetchOperationList = async (
     ToDate: format(toDate, 'dd/MM/yyyy'),
     MaterialCode: materialCode,
   };
+<<<<<<< HEAD
 
   try {
     const response = await axios.post(
@@ -127,6 +166,18 @@ export const fetchOperationList = async (
     }
     throw error;
   }
+=======
+  
+  const response = await axios.post(
+    `${BASE_URL}/productionappservices/getoperationlist`,
+    shiftIds,
+    { 
+      params,
+      headers 
+    }
+  );
+  return response.data;
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 };
 
 // 4. Get Gauge List
@@ -136,10 +187,17 @@ export interface GuageData {
 }
 
 export const fetchGuageList = async (
+<<<<<<< HEAD
   fromDate: Date,
   toDate: Date,
   materialCode: string,
   operationCode: string,
+=======
+  fromDate: Date, 
+  toDate: Date, 
+  materialCode: string, 
+  operationCode: string, 
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
   shiftIds: number[]
 ): Promise<GuageData[]> => {
   const params = {
@@ -148,6 +206,7 @@ export const fetchGuageList = async (
     MaterialCode: materialCode,
     OperationCode: operationCode,
   };
+<<<<<<< HEAD
 
   try {
     const response = await axios.post(
@@ -166,6 +225,18 @@ export const fetchGuageList = async (
     }
     throw error;
   }
+=======
+  
+  const response = await axios.post(
+    `${BASE_URL}/productionappservices/getguagelist`,
+    shiftIds,
+    { 
+      params,
+      headers 
+    }
+  );
+  return response.data;
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 };
 
 // 5. Get PIR Inspection Data List
@@ -195,6 +266,7 @@ export const fetchInspectionData = async (
     OperationCode: operationCode,
     GuageCode: guageCode,
   };
+<<<<<<< HEAD
 
   try {
     const response = await axios.post(
@@ -213,4 +285,16 @@ export const fetchInspectionData = async (
     }
     throw error;
   }
+=======
+  
+  const response = await axios.post(
+    `${BASE_URL}/productionappservices/getpirinspectiondatalist`,
+    shiftIds,
+    { 
+      params,
+      headers 
+    }
+  );
+  return response.data;
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 };

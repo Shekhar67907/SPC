@@ -13,6 +13,7 @@ interface ControlChartsProps {
     rangeLcl: number;
     rangeMean: number;
   };
+<<<<<<< HEAD
   sampleSize: number;
 }
 
@@ -37,14 +38,27 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
     xBar: Math.abs(limits.xBarUcl - limits.xBarLcl) * 0.15,
     range: Math.abs(limits.rangeUcl - limits.rangeLcl) * 0.15
   };
+=======
+}
+
+export function ControlCharts({ xBarData, rangeData, limits }: ControlChartsProps) {
+  // Calculate width based on number of data points
+  const chartWidth = Math.max(350, xBarData.length * 50); // Minimum 350px or 50px per point
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 
   return (
     <View style={styles.container}>
       <View style={styles.chartContainer}>
         <View style={styles.chartHeader}>
+<<<<<<< HEAD
           <Text style={styles.sampleSize}>Sample Size: {sampleSize}</Text>
           <Text style={styles.formula}>
             XBar Chart (A2={A2}): UCL = X̄ + (A2 × R̄) LCL = X̄ - (A2 × R̄)
+=======
+          <Text style={styles.sampleSize}>Sample Size: 1</Text>
+          <Text style={styles.formula}>
+            XBar Chart UCL = X̄ + (A2 × R̄) LCL = X̄ - (A2 × R̄)
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
           </Text>
         </View>
 
@@ -66,6 +80,7 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
         <ScrollView horizontal showsHorizontalScrollIndicator={true}>
           <View style={{ width: chartWidth }}>
             <VictoryChart
+<<<<<<< HEAD
               padding={{ top: 50, bottom: 50, left: 60, right: 30 }}
               height={300}
               width={chartWidth}
@@ -75,19 +90,30 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
                   Math.max(limits.xBarUcl, Math.max(...xBarData.map(d => d.y))) + yPadding.xBar
                 ]
               }}
+=======
+              padding={{ top: 40, bottom: 50, left: 50, right: 20 }}
+              height={250}
+              width={chartWidth}
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
             >
               <VictoryAxis
                 tickFormat={(t) => `G${t}`}
                 style={{
                   grid: { stroke: '#E5E7EB', strokeDasharray: '5,5' },
+<<<<<<< HEAD
                   tickLabels: { fontSize: 12, padding: 5 }
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
                 }}
               />
               <VictoryAxis
                 dependentAxis
                 style={{
                   grid: { stroke: '#E5E7EB', strokeDasharray: '5,5' },
+<<<<<<< HEAD
                   tickLabels: { fontSize: 12, padding: 5 }
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
                 }}
               />
               <VictoryLine
@@ -96,11 +122,16 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
               />
               <VictoryScatter
                 data={xBarData}
+<<<<<<< HEAD
                 size={6}
+=======
+                size={5}
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
                 style={{ data: { fill: '#3B82F6' } }}
               />
               <VictoryLine
                 y={() => limits.xBarUcl}
+<<<<<<< HEAD
                 style={{ 
                   data: { 
                     stroke: '#EF4444', 
@@ -127,6 +158,17 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
                     strokeDasharray: '8,4' 
                   } 
                 }}
+=======
+                style={{ data: { stroke: '#EF4444', strokeDasharray: '5,5' } }}
+              />
+              <VictoryLine
+                y={() => limits.xBarMean}
+                style={{ data: { stroke: '#8B5CF6', strokeWidth: 2 } }}
+              />
+              <VictoryLine
+                y={() => limits.xBarLcl}
+                style={{ data: { stroke: '#EF4444', strokeDasharray: '5,5' } }}
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
               />
             </VictoryChart>
           </View>
@@ -135,10 +177,14 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
 
       <View style={styles.chartContainer}>
         <View style={styles.chartHeader}>
+<<<<<<< HEAD
           <Text style={styles.sampleSize}>Range Chart</Text>
           <Text style={styles.formula}>
             Range Chart (D3={D3}, D4={D4}): UCL = D4 × R̄ LCL = D3 × R̄
           </Text>
+=======
+          <Text style={styles.sampleSize}>Sample Size: 2</Text>
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
         </View>
 
         <View style={styles.limitsContainer}>
@@ -159,6 +205,7 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
         <ScrollView horizontal showsHorizontalScrollIndicator={true}>
           <View style={{ width: chartWidth }}>
             <VictoryChart
+<<<<<<< HEAD
               padding={{ top: 50, bottom: 50, left: 60, right: 30 }}
               height={300}
               width={chartWidth}
@@ -168,19 +215,30 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
                   Math.max(limits.rangeUcl, Math.max(...rangeData.map(d => d.y))) + yPadding.range
                 ]
               }}
+=======
+              padding={{ top: 40, bottom: 50, left: 50, right: 20 }}
+              height={250}
+              width={chartWidth}
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
             >
               <VictoryAxis
                 tickFormat={(t) => `G${t}`}
                 style={{
                   grid: { stroke: '#E5E7EB', strokeDasharray: '5,5' },
+<<<<<<< HEAD
                   tickLabels: { fontSize: 12, padding: 5 }
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
                 }}
               />
               <VictoryAxis
                 dependentAxis
                 style={{
                   grid: { stroke: '#E5E7EB', strokeDasharray: '5,5' },
+<<<<<<< HEAD
                   tickLabels: { fontSize: 12, padding: 5 }
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
                 }}
               />
               <VictoryLine
@@ -189,11 +247,16 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
               />
               <VictoryScatter
                 data={rangeData}
+<<<<<<< HEAD
                 size={6}
+=======
+                size={5}
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
                 style={{ data: { fill: '#3B82F6' } }}
               />
               <VictoryLine
                 y={() => limits.rangeUcl}
+<<<<<<< HEAD
                 style={{ 
                   data: { 
                     stroke: '#EF4444', 
@@ -220,10 +283,22 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
                     strokeDasharray: '8,4' 
                   } 
                 }}
+=======
+                style={{ data: { stroke: '#EF4444', strokeDasharray: '5,5' } }}
+              />
+              <VictoryLine
+                y={() => limits.rangeMean}
+                style={{ data: { stroke: '#8B5CF6', strokeWidth: 2 } }}
+              />
+              <VictoryLine
+                y={() => limits.rangeLcl}
+                style={{ data: { stroke: '#EF4444', strokeDasharray: '5,5' } }}
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
               />
             </VictoryChart>
           </View>
         </ScrollView>
+<<<<<<< HEAD
 
         <View style={styles.legend}>
           <View style={styles.legendItem}>
@@ -239,6 +314,8 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
             <Text style={styles.legendText}>Center Line</Text>
           </View>
         </View>
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
       </View>
     </View>
   );
@@ -247,12 +324,19 @@ export function ControlCharts({ xBarData, rangeData, limits, sampleSize }: Contr
 const styles = StyleSheet.create({
   container: {
     gap: 24,
+<<<<<<< HEAD
     marginBottom: 24,
+=======
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
   },
   chartContainer: {
     backgroundColor: '#fff',
     borderRadius: 12,
+<<<<<<< HEAD
     padding: 20,
+=======
+    padding: 16,
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -269,8 +353,13 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sampleSize: {
+<<<<<<< HEAD
     fontSize: 16,
     fontWeight: '600',
+=======
+    fontSize: 14,
+    fontWeight: '500',
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
     color: '#374151',
   },
   formula: {
@@ -281,12 +370,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 16,
+<<<<<<< HEAD
     gap: 12,
+=======
+    gap: 8,
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
   },
   limitBox: {
     flex: 1,
     borderRadius: 8,
+<<<<<<< HEAD
     padding: 12,
+=======
+    padding: 8,
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
     alignItems: 'center',
   },
   uclBox: {
@@ -299,6 +396,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FEE2E2',
   },
   limitLabel: {
+<<<<<<< HEAD
     fontSize: 14,
     color: '#374151',
     marginBottom: 4,
@@ -332,4 +430,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#4B5563',
   },
+=======
+    fontSize: 12,
+    color: '#374151',
+    marginBottom: 4,
+  },
+  limitValue: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1F2937',
+  },
+>>>>>>> c4bb74a3d33d39d271ff6602ee72fb378dd9b6a0
 });
